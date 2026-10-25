@@ -108,9 +108,14 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 # Install Claude
 RUN curl -fsSL https://claude.ai/install.sh | bash
 RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+# Sessions that remote-control spawns ignore --dangerously-skip-permissions and
+# take their mode from its own --permission-mode option instead.
 RUN cat >> ~/.zshrc <<'EOF'
 claude() {
-  command claude --dangerously-skip-permissions "$@"
+  case "$1" in
+    rc|remote-control) command claude "$@" --permission-mode bypassPermissions ;;
+    *) command claude --dangerously-skip-permissions "$@" ;;
+  esac
 }
 EOF
 
