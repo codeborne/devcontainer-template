@@ -5,7 +5,7 @@ runs the workload as `node`.
 
 ## Use it in a new project
 
-1. Get the files of this repo into your project root: `curl -L https://github.com/erikjogi-cb/devcontainer-template/archive/HEAD.tar.gz | tar xz --exclude='*/README.md' --strip-components=1`
+1. Get the files of this repo into your project root: `curl -L https://github.com/erikjogi-cb/devcontainer-template/archive/HEAD.tar.gz | tar xz --exclude='*/README.md' --exclude='*/.gitignore' --strip-components=1`
 2. Set `COMPOSE_PROJECT_NAME` in `.devcontainer/.env`.
 3. Add the hosts of the project to `.devcontainer/allowed-domains.conf`.
 4. If you want to connect to a server running inside the devconatiner, add the port to `.devcontainer/inbound-ports.conf`.
